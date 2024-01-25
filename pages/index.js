@@ -21,3 +21,19 @@ export default function Home() {
     </div>
   )
 }
+window.onload = function() {
+  if (typeof window.ethereum !== 'undefined') {
+      console.log('MetaMask is installed!');
+      window.ethereum
+          .request({ method: 'eth_chainId' })
+          .then(chainId => {
+              console.log('Connected to Ethereum with chain ID:', chainId);
+          })
+          .catch(error => {
+              console.error('Error connecting to Ethereum:', error.message);
+          });
+  } else {
+      console.warn('MetaMask is not installed.');
+  }
+};
+
